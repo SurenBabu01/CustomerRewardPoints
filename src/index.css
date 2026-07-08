@@ -1,20 +1,13 @@
-
 /* Import Google Font: Inter for modern typography */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Primary palette */
-  --color-primary: #8b5cf6;
-  --color-primary-light: #a78bfa;
-  --color-primary-dark: #7c3aed;
-
-  /* Card / Surface */
-  --color-card-border: rgba(139, 92, 246, 0.12); 
-
-  /* Table */
-  --color-table-header-bg: rgba(139, 92, 246, 0.06);
-
-
+  --color-bg: #f5f7fb;
+  --color-surface: #ffffff;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-card-border: #e5e7eb;
+  --color-table-header-bg: #f3f4f6;
 }
 
 *,
@@ -25,7 +18,6 @@
   padding: 0;
 }
 
-/* === Base Styles === */
 html {
   font-size: 16px;
 }
@@ -38,7 +30,6 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-
 
 #root {
   min-height: 100vh;

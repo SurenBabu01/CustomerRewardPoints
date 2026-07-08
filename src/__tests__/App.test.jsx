@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import useFetchTransactions from '../hooks/useFetchTransactions';
 import App from '../components/App/App';
 
@@ -50,7 +50,7 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByText('Customer Rewards Program')).toBeInTheDocument();
-    expect(screen.getByText('Track and manage customer loyalty points')).toBeInTheDocument();
+    expect(screen.getByText('Track and manage customer reward points')).toBeInTheDocument();
   });
 
   test('renders error message when loading fails', async () => {
@@ -65,7 +65,7 @@ describe('App', () => {
     expect(screen.getByText('Failed to load transaction data')).toBeInTheDocument();
   });
 
-  test('renders all three tables after data loads', async () => {
+  test('renders three tabs and shows monthly rewards by default after data loads', async () => {
     mockedUseFetchTransactions.mockReturnValue({
       data: mockTransactions,
       loading: false,
@@ -74,14 +74,48 @@ describe('App', () => {
 
     render(<App />);
 
-    await waitFor(
-      () => {
-        expect(screen.getByText(/Monthly Rewards/)).toBeInTheDocument();
-        expect(screen.getByText(/Total Rewards/)).toBeInTheDocument();
-        expect(screen.getByText(/Transactions/)).toBeInTheDocument();
-      },
-      { timeout: 3000 }
-    );
+    await waitFor(() => {
+      expect(screen.getByRole('tab', { name: /monthly rewards/i })).toBeInTheDocument();
+      expect(screen.getByRole('tab', { name: /total rewards/i })).toBeInTheDocument();
+      expect(screen.getByRole('tab', { name: /transactions/i })).toBeInTheDocument();
+    });
+
+    const monthlyTab = screen.getByRole('tab', { name: /monthly rewards/i });
+    expect(monthlyTab).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Monthly Rewards');
+    expect(screen.getByRole('tabpanel')).not.toHaveTextContent('Total Rewards');
+  });
+
+  test('switches to total rewards view when the total tab is selected', async () => {
+    mockedUseFetchTransactions.mockReturnValue({
+      data: mockTransactions,
+      loading: false,
+      error: null,
+    });
+
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('tab', { name: /total rewards/i }));
+
+    expect(screen.getByRole('tab', { name: /total rewards/i })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Total Rewards');
+    expect(screen.getByRole('tabpanel')).not.toHaveTextContent('Monthly Rewards');
+  });
+
+  test('switches to transactions view and keeps the tab state accessible', async () => {
+    mockedUseFetchTransactions.mockReturnValue({
+      data: mockTransactions,
+      loading: false,
+      error: null,
+    });
+
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('tab', { name: /transactions/i }));
+
+    expect(screen.getByRole('tab', { name: /transactions/i })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Transactions');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Transaction ID');
   });
 
   test('renders footer with points explanation when data is available', async () => {

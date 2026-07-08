@@ -1,28 +1,21 @@
 .card {
-  background: var(--color-card-bg);
+  background: var(--color-surface);
   border: 1px solid var(--color-card-border);
-  border-radius: 16px;
-  padding: 1.5rem;
-  backdrop-filter: blur(12px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.08);
+  border-radius: 14px;
+  padding: 1rem;
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-text-primary);
-  margin: 0 0 1.25rem 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .searchBar {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .searchControls {
@@ -36,60 +29,41 @@
 
 .searchInput {
   width: min(280px, 100%);
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.8rem;
   border: 1px solid var(--color-card-border);
-  border-radius: 9999px;
-  background: var(--color-surface);
+  border-radius: 8px;
+  background: var(--color-bg);
   color: var(--color-text-primary);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.searchInput:focus {
-  border-color: rgba(139, 92, 246, 0.6);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
 }
 
 .tableWrapper {
   overflow-x: auto;
-  border-radius: 12px;
 }
 
 .table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.875rem;
-}
-
-.table thead tr {
-  background: var(--color-table-header-bg);
+  border-collapse: collapse;
+  font-size: 0.95rem;
 }
 
 .table th {
-  padding: 0.875rem 1rem;
+  padding: 0.7rem 0.8rem;
   text-align: left;
   font-weight: 600;
   color: var(--color-text-secondary);
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--color-card-border);
+  border: 1px solid var(--color-card-border);
+  background: var(--color-bg);
 }
 
 .table td {
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 0.8rem;
   color: var(--color-text-primary);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  transition: background 0.15s ease;
+  border: 1px solid var(--color-card-border);
 }
 
-.table tbody tr:hover td {
-  background: rgba(139, 92, 246, 0.04);
-}
-
-.table tbody tr:last-child td {
-  border-bottom: none;
+.table tbody tr:nth-child(even) td {
+  background: var(--color-bg);
 }
 
 .paginationBar {
@@ -97,21 +71,16 @@
   align-items: center;
   justify-content: flex-end;
   gap: 0.75rem;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
 }
 
 .paginationButton {
   border: 1px solid var(--color-card-border);
-  border-radius: 9999px;
-  background: var(--color-surface);
+  border-radius: 8px;
+  background: var(--color-bg);
   color: var(--color-text-primary);
-  padding: 0.6rem 1rem;
+  padding: 0.55rem 0.75rem;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.paginationButton:hover:not(:disabled) {
-  background: rgba(139, 92, 246, 0.08);
 }
 
 .paginationButton:disabled {
@@ -126,13 +95,13 @@
 
 .summaryText {
   color: var(--color-text-secondary);
-  margin-top: 0.75rem;
+  margin-top: 0.6rem;
   font-size: 0.9rem;
 }
 
 .emptyMessage {
   color: var(--color-text-secondary);
   text-align: center;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   font-style: italic;
 }

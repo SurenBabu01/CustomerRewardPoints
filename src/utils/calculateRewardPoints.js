@@ -3,12 +3,6 @@ import logger from './logger';
 
 /**
  * Calculates reward points for a given purchase amount.
- *
- * Business Rules:
- * - 2 points per dollar spent over $100
- * - 1 point per dollar spent between $50 and $100
- * - Fractional dollars are floored before calculation
- *   (e.g., $100.49 floors to $100 -> 50 points)
  */
 const calculateRewardPoints = (amount) => {
   /* Guard against invalid input */

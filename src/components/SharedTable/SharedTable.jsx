@@ -10,7 +10,7 @@ const SharedTable = ({
   rowKey,
   enablePagination = true,
   pageSize = 15,
-  headerActions,
+  dateRangeFilter,
 }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchText, setSearchText] = useState('');
@@ -45,7 +45,7 @@ const SharedTable = ({
             onChange={handleSearchChange}
             aria-label="Table search"
           />
-          {headerActions}
+          {dateRangeFilter}
         </div>
       </div>
     </>
@@ -176,7 +176,7 @@ SharedTable.propTypes = {
   rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
   enablePagination: PropTypes.bool,
   pageSize: PropTypes.number,
-  headerActions: PropTypes.node,
+  dateRangeFilter: PropTypes.element,
 };
 
 SharedTable.defaultProps = {

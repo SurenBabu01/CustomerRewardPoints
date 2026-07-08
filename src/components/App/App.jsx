@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useFetchTransactions from '../../hooks/useFetchTransactions';
 import {
   aggregateMonthlyRewards,
@@ -18,20 +18,16 @@ import styles from './App.module.css';
  * Fetches transaction data via a custom hook and derives all display data
  * (monthly rewards, total rewards, enriched transactions) using pure functions.
  * Derived data is computed during rendering, NOT stored in state.
- *
- * State flow:
- * 1. Mount -> useFetchTransactions initiates async API call -> loading state
- * 2. API resolves -> transactions arrive -> derived data computed -> tables render
- * 3. API rejects -> error state -> error message displayed
  */
 const App = () => {
   const { data: transactions, loading, error } = useFetchTransactions();
+  const [activeTab, setActiveTab] = useState('monthly');
 
   const renderHeader = () => (
     <header className={styles.header}>
       <h1 className={styles.headerTitle}>Customer Rewards Program</h1>
-      <p className={styles.headerSubtitle}>Track and manage customer loyalty points</p>
-   </header>
+      <p className={styles.headerSubtitle}>Track and manage customer reward points</p>
+    </header>
   );
   
   /* Show loading spinner while data is being fetched */
@@ -46,7 +42,6 @@ const App = () => {
     );
   }
 
-  /* Show error message if API call failed */
   if (error) {
     return (
       <div className={styles.app}>
@@ -65,19 +60,77 @@ const App = () => {
   const monthlyRewards = aggregateMonthlyRewards(transactions);
   const totalRewards = aggregateTotalRewards(transactions);
   const enrichedTransactions = enrichTransactionsWithRewards(transactions);
+  const customerCount = new Set(transactions.map((transaction) => transaction.customerId)).size;
+  const transactionCount = transactions.length;
+
+  const tabs = [
+    {
+      id: 'monthly',
+      label: 'Monthly Rewards',
+      content: <MonthlyRewardsTable rewards={monthlyRewards} />,
+    },
+    {
+      id: 'total',
+      label: 'Total Rewards',
+      content: <TotalRewardsTable rewards={totalRewards} />,
+    },
+    {
+      id: 'transactions',
+      label: 'Transactions',
+      content: <TransactionsTable transactions={enrichedTransactions} />,
+    },
+  ];
+
+  const selectedTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
 
   return (
     <div className={styles.app}>
       {renderHeader()}
       <main className={styles.main}>
-        <section className={styles.section}>
-          <MonthlyRewardsTable rewards={monthlyRewards} />
+        <section className={styles.summaryCard}>
+          <div className={styles.summaryIntro}>
+            <p className={styles.Overview}>Overview</p>
+            <h2 className={styles.summaryTitle}>Reward activity</h2>
+          </div>
+          <div className={styles.summaryStats}>
+            <div className={styles.statBox}>
+              <span>Customers</span>
+              <strong>{customerCount}</strong>
+            </div>
+            <div className={styles.statBox}>
+              <span>Total Transactions</span>
+              <strong>{transactionCount}</strong>
+            </div>
+          </div>
         </section>
-        <section className={styles.section}>
-          <TotalRewardsTable rewards={totalRewards} />
-        </section>
-        <section className={styles.section}>
-          <TransactionsTable transactions={enrichedTransactions} />
+
+        <section className={styles.tabsContainer}>
+          <div className={styles.tabList} role="tablist" aria-label="Reward views">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                id={`tab-${tab.id}`}
+                className={styles.tabButton}
+                role="tab"
+                type="button"
+                aria-selected={activeTab === tab.id}
+                aria-controls={`panel-${tab.id}`}
+                tabIndex={activeTab === tab.id ? 0 : -1}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div
+            id={`panel-${selectedTab.id}`}
+            className={styles.tabPanel}
+            role="tabpanel"
+            aria-labelledby={`tab-${selectedTab.id}`}
+          >
+            {selectedTab.content}
+          </div>
         </section>
       </main>
       <footer className={styles.footer}>

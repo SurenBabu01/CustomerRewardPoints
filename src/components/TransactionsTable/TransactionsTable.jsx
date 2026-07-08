@@ -108,7 +108,6 @@ const TransactionsTable = ({ transactions }) => {
     },
   ];
 
-  //  consider the filter "Active" if the applied dates match the input dates
   const isFilterActive = 
     appliedDates.from && 
     appliedDates.to && 
@@ -129,7 +128,7 @@ const TransactionsTable = ({ transactions }) => {
         }
         enablePagination
         pageSize={10}
-        headerActions={
+        dateRangeFilter={
           <>
             <div className={styles.filterBar}>
               <label className={styles.filterField}>

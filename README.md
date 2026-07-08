@@ -195,14 +195,13 @@ Opens the app at [http://localhost:3000](http://localhost:3000).
 
 > **Note**: Run `npm start` and navigate to `http://localhost:3000` to see:
 > 1. Loading spinner on initial load
-![alt text](image-4.png)
-> 2. Monthly Rewards table
-![alt text](image.png)
-> 3. Total Rewards table with cumulative points
-![alt text](image-3.png)
-> 4. Transactions table with all individual purchases
+![alt text](image-3.png)> 
+2. Monthly Rewards table
+![alt text](image.png)> 
+3. Total Rewards table with cumulative points
+![alt text](image-1.png)> 
+4. Transactions table with all individual purchases
 ![alt text](image-2.png)
-
 ---
 
 
