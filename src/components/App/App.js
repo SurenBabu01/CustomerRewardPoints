@@ -7,6 +7,7 @@ import {
 } from '../../utils/aggregateRewards';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import MonthlyRewardsTable from '../MonthlyRewardsTable/MonthlyRewardsTable';
 import TotalRewardsTable from '../TotalRewardsTable/TotalRewardsTable';
 import TransactionsTable from '../TransactionsTable/TransactionsTable';
@@ -129,7 +130,7 @@ const App = () => {
             role="tabpanel"
             aria-labelledby={`tab-${selectedTab.id}`}
           >
-            {selectedTab.content}
+            <ErrorBoundary>{selectedTab.content}</ErrorBoundary>
           </div>
         </section>
       </main>

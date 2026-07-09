@@ -54,49 +54,55 @@ For a purchase amount P:
 ```
 customer-rewards/
 ├── public/
+│   ├── assets/
+│   │   └── images/                      # Screenshot assets
 │   ├── data/
-│   │   └── transactions.json             # Mock dataset
+│   │   └── transactions.json            # Mock dataset
 │   ├── index.html
 ├── src/
 │   ├── api/
-│   │   └── fetchTransactions.js          # Simulated async API call
+│   │   └── fetchTransactions.js         # Simulated async API call
 │   ├── components/
 │   │   ├── App/
-│   │   │   ├── App.jsx                   # Main app shell
+│   │   │   ├── App.jsx                  # Main app shell
 │   │   │   └── App.module.css
-│   │   ├── MonthlyRewardsTable/
-│   │   │   ├── MonthlyRewardsTable.jsx   # Table 1
-│   │   │   └── MonthlyRewardsTable.module.css
-│   │   ├── TotalRewardsTable/
-│   │   │   ├── TotalRewardsTable.jsx     # Table 2
-│   │   │   └── TotalRewardsTable.module.css
-│   │   ├── TransactionsTable/
-│   │   │   ├── TransactionsTable.jsx     # Table 3
-│   │   │   └── TransactionsTable.module.css
+│   │   ├── ErrorBoundary/
+│   │   │   ├── ErrorBoundary.jsx        # Fallback UI for runtime errors
+│   │   │   └── ErrorBoundary.module.css
 │   │   ├── ErrorMessage/
 │   │   │   ├── ErrorMessage.jsx
 │   │   │   └── ErrorMessage.module.css
 │   │   ├── LoadingSpinner/
 │   │   │   ├── LoadingSpinner.jsx
 │   │   │   └── LoadingSpinner.module.css
-│   │   └── SharedTable/
-│   │       ├── SharedTable.jsx
-│   │       └── SharedTable.module.css
+│   │   ├── MonthlyRewardsTable/
+│   │   │   ├── MonthlyRewardsTable.jsx  # Table 1
+│   │   │   └── MonthlyRewardsTable.module.css
+│   │   ├── SharedTable/
+│   │   │   ├── SharedTable.jsx
+│   │   │   └── SharedTable.module.css
+│   │   ├── TotalRewardsTable/
+│   │   │   ├── TotalRewardsTable.jsx    # Table 2
+│   │   │   └── TotalRewardsTable.module.css
+│   │   └── TransactionsTable/
+│   │       ├── TransactionsTable.jsx    # Table 3
+│   │       └── TransactionsTable.module.css
 │   ├── constants/
-│   │   └── rewardsConfig.js              # Configurable reward tiers
+│   │   └── rewardsConfig.js             # Configurable reward tiers
 │   ├── hooks/
-│   │   └── useFetchTransactions.js       # Custom data fetching hook
+│   │   └── useFetchTransactions.js      # Custom data fetching hook
 │   ├── utils/
-│   │   ├── calculateRewardPoints.js      # Pure function: points calc
-│   │   ├── aggregateRewards.js           # Pure function: data aggregation
-│   │   ├── dateUtils.js                  # Date formatting utilities
-│   │   └── logger.js                     # Logger configuration
-│   ├── __tests__/                        # All test files
-│   ├── index.css                         # Global styles & design tokens
-│   ├── index.js                          # Entry point
+│   │   ├── aggregateRewards.js          # Pure function: data aggregation
+│   │   ├── calculateRewardPoints.js     # Pure function: points calc
+│   │   ├── dateUtils.js                 # Date formatting utilities
+│   │   └── logger.js                    # Logger configuration
+│   ├── __tests__/                       # All Unit testcases
+│   ├── index.css                        # Global styles & design tokens
+│   ├── index.js                         # Entry point
 │   └── setupTests.js
 ├── .eslintrc.json
 ├── package.json
+├── package-lock.json
 └── README.md
 
 ```
@@ -195,13 +201,13 @@ Opens the app at [http://localhost:3000](http://localhost:3000).
 
 > **Note**: Run `npm start` and navigate to `http://localhost:3000` to see:
 > 1. Loading spinner on initial load
-![alt text](image-3.png)> 
+![alt text](public/assets/images/image-3.png)
 2. Monthly Rewards table
-![alt text](image.png)> 
+![alt text](public/assets/images/image.png)
 3. Total Rewards table with cumulative points
-![alt text](image-1.png)> 
+![alt text](public/assets/images/image-1.png)
 4. Transactions table with all individual purchases
-![alt text](image-2.png)
+![alt text](public/assets/images/image-2.png)
 ---
 
 

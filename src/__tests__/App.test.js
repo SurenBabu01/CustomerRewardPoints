@@ -74,11 +74,9 @@ describe('App', () => {
 
     render(<App />);
 
-    await waitFor(() => {
-      expect(screen.getByRole('tab', { name: /monthly rewards/i })).toBeInTheDocument();
-      expect(screen.getByRole('tab', { name: /total rewards/i })).toBeInTheDocument();
-      expect(screen.getByRole('tab', { name: /transactions/i })).toBeInTheDocument();
-    });
+    expect(screen.getByRole('tab', { name: /monthly rewards/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /total rewards/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /transactions/i })).toBeInTheDocument();
 
     const monthlyTab = screen.getByRole('tab', { name: /monthly rewards/i });
     expect(monthlyTab).toHaveAttribute('aria-selected', 'true');

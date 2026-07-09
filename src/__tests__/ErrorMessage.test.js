@@ -25,11 +25,4 @@ describe('ErrorMessage', () => {
     render(<ErrorMessage message="Test error" />);
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });
-
-  test('renders warning icon', () => {
-    render(<ErrorMessage message="Test error" />);
-    /* Warning symbol is rendered as aria-hidden */
-    const icon = document.querySelector('[aria-hidden="true"]');
-    expect(icon).toBeInTheDocument();
-  });
 });

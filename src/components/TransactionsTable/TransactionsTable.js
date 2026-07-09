@@ -11,7 +11,6 @@ import styles from './TransactionsTable.module.css';
 const TransactionsTable = ({ transactions }) => {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
-  // New state to hold the dates only AFTER apply is clicked
   const [appliedDates, setAppliedDates] = useState({ from: '', to: '' });
   const [validationMessage, setValidationMessage] = useState('');
 
@@ -74,7 +73,7 @@ const TransactionsTable = ({ transactions }) => {
   const handleClearDates = () => {
     setFromDate('');
     setToDate('');
-    setAppliedDates({ from: '', to: '' }); // Clearing this triggers the useMemo to return all data
+    setAppliedDates({ from: '', to: '' });
     setValidationMessage('');
   };
 

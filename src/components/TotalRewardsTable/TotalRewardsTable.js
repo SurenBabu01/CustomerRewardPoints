@@ -35,8 +35,7 @@ TotalRewardsTable.propTypes = {
   rewards: PropTypes.arrayOf(
     PropTypes.shape({
       customerId: PropTypes.string.isRequired,
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
+      customerName: PropTypes.string.isRequired, 
       rewardPoints: PropTypes.number.isRequired,
     })
   ).isRequired,

@@ -34,7 +34,7 @@ export const formatDate = (dateString) => {
 };
 
 /**
- * Function for sorting objects by their date property (ascending).
+ * Function for sorting objects by their date property (descending).
  */
 export const sortByDate = (a, b) => {
   return dayjs(b.date).valueOf() - dayjs(a.date).valueOf();
